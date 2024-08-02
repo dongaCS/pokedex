@@ -1,7 +1,12 @@
 # PokeDex 2.0
 Learning to work with EJS, Node, Express, and Axios. 
 
-## Abstract
+## Table of Contents
+- [Overview](#Overview)
+- [About](#About)
+- [Running it Locally](#Running-it-Locally)
+
+## Overview
 - Creates a server using express
 - Uses router to handle URL requests
 - Uses Axios to address Promises from API call to https://pokeapi.co/api/v2/ 
@@ -9,7 +14,7 @@ Learning to work with EJS, Node, Express, and Axios.
 - Uses EJS engine to render URL 
 
 [insert preview here]
-  
+
 ## About
 ### index.js
 - Contains basic setup for using Express App and supporting modules.
