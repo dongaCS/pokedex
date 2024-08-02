@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POKEMON</title>
+    <link rel="stylesheet" href="/style/pokemonMain.css">
+    <link rel="stylesheet" href="/style/pokemonLeft.css">
+    <link rel="stylesheet" href="/style/pokemonRight.css">
+    </head>
+    <body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+      <%- include(`./searchbar.ejs`) %> 
+      <div class="container">
+        <div class="left-container">
+            <div class="left-top-container"> 
+                <div class="info"><h3><%= errorLog %></h3><br>
+                                  <h3>POKEMON NOT FOUND</h3>
+                </div>
+            </div>
+           
+            <br>
+            <br>
+            <div class="stats" style="text-align: center; align-content: center;"><p>
+              <h1>WHY DID ARE WE HERE?</h1>
+              <h4>- Make sure the pokemon name is spelled right</h4>
+              <h4>- Only support up to Gen VIII pokemons</h4>
+              <h4>- Make sure there are no special character or numbers following the pokemon name</h4>
+            </p></div>
+        </div> 
+        <div class="right-container">
+            <div class="right-top-container"> 
+                <div class="name"><h1><%= name %></h1></div>
+            </div>
+            <div class="image"><img src=<%= image %>></img></div>
+            <div class="right-inner-container">
+                <div class="type"><p><b>TYPE</b></p>
+                        <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/<%= types %>.png></img><br>
+                </div>
+                <div class="ability"><p><b>ABILITIES</b></p>
+                  <% for(e of abilities) { %>
+                    <span><%= e %></span><br>
+                <% } %>
+                </div>
+            </div>
+            <div class="description"><p>
+               <%= description %>
+            </p></div>
+        </div> 
+        
+        
+      </div>
+  </body>
+</html>

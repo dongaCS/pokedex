@@ -1,0 +1,38 @@
+<div class="right-container">
+    <div class="right-top-container"> 
+        <div class="name"><h1><%= name %></h1></div>
+        <div class="audio"><button onclick="play('<%= audio %>')"></button></div>
+    </div>
+    <div class="image"><img src=<%= image %>></img></div>
+    <div class="right-inner-container">
+        <div class="type"><p><b>TYPE</b></p>
+            <% for(e of types) { %>
+                <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/<%= e.type.url.slice(-1-2, -1) %>.png></img><br>
+            <% } %>
+        </div>
+        <div class="ability"><p><b>ABILITIES</b></p>
+            <% for(e of abilities) { %>
+                <span><%= e.ability.name %></span><br>
+            <% } %>
+        </div>
+    </div>
+    <div class="description"><p>
+       <% for(e of description ) { %>
+            <% if(e.language.name === `en`) { %>
+                <% flavor = e.flavor_text; %>
+                <% break; %>
+            <% } %>
+        <% } %>
+        <% flavor = flavor.replaceAll(/[\n\f]+/g, " "); %>
+        <%= flavor %>  
+    </p></div>
+</div> 
+
+<script>
+    let sound = new Audio;
+    function play(url) {
+        sound.pause();
+        sound.src = url;
+        sound.play();
+    }
+  </script>

@@ -1,0 +1,103 @@
+<script>
+    const rgb = {
+        black: "rgb(0, 0, 0)",
+        yellow: "rgb(255, 230, 66)",
+        blue: "rgb(0, 0, 225)",
+        brown: "rgb(150, 75, 0)",
+        gray: "rgb(128, 128, 128)",
+        green: "rgb(0, 255, 0)",
+        pink: "rgb(255, 192, 0203)",
+        purple: "rgb(160, 32, 240)",
+        red: "rgb(255, 0, 0)",
+        white: "rgba(192, 192, 192)",
+    }
+
+    const rgba = {
+        black: "rgba(0, 0, 0, 0.5)",
+        yellow: "rgba(255, 230, 66, 0.2)",
+        blue: "rgba(0, 0, 225, 0.2)",
+        brown: "rgba(150, 75, 0, 0.2)",
+        gray: "rgba(128, 128, 128, 0.2)",
+        green: "rgba(0, 255, 0, 0.2)",
+        pink: "rgba(255, 192, 203, 0.2)",
+        purple: "rgba(160, 32, 240, 0.2)",
+        red: "rgba(255, 0, 0, 0.2)",
+        white: "rgba(192, 192, 192, 0.2)",
+    }
+
+    const getBody = document.querySelector(`body`);
+    getBody.style.backgroundColor = rgba.<%= color %>,
+
+    new Chart("stats-radar-chart", {
+        type: 'radar',
+        data: {
+            labels: ['HP', 'ATTACK', 'DEFENSE', 'SP-ATT', 'SP-DEF', 'SPEED'],
+            datasets: [{
+                label: "BASE STATS (255)",
+                data: [<%= stat %>],
+                fill: true,
+                backgroundColor: rgba.<%= color %>,
+                borderColor: rgb.<%= color %>,
+                pointRadius: 1,
+                borderWidth: 2, // in pixel
+            }]
+        }, // end of data
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 255,
+                    ticks: { stepSize: 51, display: false, },
+                }
+            }, // end of scales
+            elements: {
+                point: {
+                    hoverRadius: 1,
+                }
+
+            },
+            plugins: {
+                title: { // not actually used but we keep for now
+                    display: false,
+                    text: "BASE STATS (255)",
+                    font: { weight: "bold" },
+                },
+                legend: { 
+                    display: false,
+                },
+                tooltip: {
+                    enabled: false,
+                },
+            }, // end of plugins
+        }, // end of options 
+    }); // end of radar chart
+
+
+    new Chart('stats-doughnut-chart', {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'FEMALE',
+                'MALE',
+            ],
+            datasets: [{
+                label: 'Gender Rates',
+                data: [<%= gender %>],
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 2,
+            }]
+        }, // end of data
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    }); // end of doughtnut chart
+
+</script>

@@ -1,0 +1,115 @@
+
+.left-container {
+    /* background-color: green; */
+    height: 100%;
+    width: 60%;
+    left: 0%;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Courier New', Courier, monospace;
+    border-right: 2px solid;
+    font-size: 1vw;
+}
+
+.left-top-container {
+    /* background-color: aqua; */
+    align-content: center;
+    text-align: center;
+    height: 8%;
+    overflow: scroll;
+}
+
+.info {
+    /* background-color: yellow; */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.info h3, h5 {
+    line-height: 0px;
+    margin: 2.5px;
+}
+
+
+.stats {
+    /* background-color: paleturquoise; */
+    /* height: 30%; */
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    height: 60%;
+    width: 100%;
+    /* display: inline-block; */
+}
+
+.stats-radar {
+    /* background-color: yellow; */
+    height: 100%;
+    width: 70%;
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    align-content: center;
+}
+
+.stats-right {
+    /* background-color: brown; */
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 25%;
+}
+
+.stats-text {
+    /* background-color: darkorange; */
+    padding: 0px;
+    margin: 0px;
+    height: 50%;
+    display: inline-block;
+    text-align: left;
+    align-content: center;
+}
+
+.stats-text span {
+    padding: 5px;
+    overflow: scroll;
+    font-size: 1.1vw;
+}
+
+.stats-doughnut {
+    /* background-color: yellow; */
+    height: 50%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    vertical-align: bottom;
+    /* align-content: center; */
+}
+
+.left-bottom-container {
+    /* background-color: palevioletred; */
+    height: 31%;
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    text-transform: none;
+    /* padding: 0px, 5px; */
+}
+
+.evolution {
+    /* background-color: maroon; */
+    font-size: 1.1vw;
+    height: 65%;
+    width: 20%;
+    display: inline-block;
+    /* align-content: center; */
+    vertical-align: middle;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.evolution img {
+    height: 100%;
+    width: 100%;
+}

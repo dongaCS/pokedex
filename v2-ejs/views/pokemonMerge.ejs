@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POKEMON</title>
+    <link rel="stylesheet" href="/style/pokemonMain.css">
+    <link rel="stylesheet" href="/style/pokemonLeft.css">
+    <link rel="stylesheet" href="/style/pokemonRight.css">
+    </head>
+    <body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+      <%- include(`./searchbar.ejs`) %> 
+      <div class="container">
+        <%- include(`./pokemonLeft.ejs`) %>
+        
+        
+        <%- include(`./pokemonRight.ejs`) %>
+      </div>
+      <%- include(`../public/script/postRender.ejs`) %>
+  </body>
+</html>

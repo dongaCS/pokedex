@@ -1,0 +1,143 @@
+
+.right-container {
+    /* background-color: green; */
+    height: 100%;
+    width: 40%;
+    left: 60%;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Courier New', Courier, monospace;
+    /* border: 2px solid; */
+    font-size: 1.3vw;
+}
+
+.right-top-container {
+    /* background-color: aqua; */
+    align-content: center;
+    text-align: center;
+    height: 8%;
+    overflow: scroll;
+}
+
+.name {
+    /* background-color: yellow; */
+    display: inline-block;
+    padding-top: 15px;
+    vertical-align: middle;
+    /* vertical-align: center; */
+}
+
+.name h1 {
+    line-height: 0px;
+    margin-top: 10px;
+}
+
+.audio {
+    /* background-color: pink; */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.audio button {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 50%;
+    background: linear-gradient(to top, white 8px, red 11px);
+}
+
+.audio button::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 10px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid;
+    top: 4px;
+    left: 7px;
+}
+
+.image {
+    /* background-color: black; */
+    height: 50%;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    align-content: center;
+    padding: 5px;
+}
+
+.image img {
+    height: 80%;
+    width: 80%;
+}
+
+.right-inner-container {
+    /* background-color: blueviolet; */
+    height: 15%;
+    border-bottom: 2px solid;
+}
+
+.right-inner-container p {
+    padding: 0px;
+    margin: 0px;
+    vertical-align: center;
+    padding-bottom: 2px;
+}
+
+.type {
+    /* background-color: palegreen; */
+    vertical-align: top;
+    width: 45%;
+    display: inline-block;
+    height: 100%;
+    overflow: scroll;
+    border-right: 2px solid;
+    align-content: center;
+}
+
+.type img {
+    display: inline-block;
+    vertical-align: center;
+    border: 2px solid black;
+    width: 70%;
+    height: 25%;
+}
+
+.ability {
+    /* background-color: yellowgreen; */
+    vertical-align: top;
+    width: 45%;
+    display: inline-block;
+    height: 100%;
+    overflow: scroll;
+    align-content: center;
+}
+
+.ability span {
+    padding: 1px;
+    display: inline-block;
+    vertical-align: center;
+    background-color: darkgray;
+    border: 2px solid black;
+    text-transform: uppercase;
+    margin: 1px;
+    font-size: 1.1vw;
+}
+
+.description {
+    /* background-color: palevioletred; */
+    height: 24%;
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    text-transform: none;
+    /* padding: 0px, 5px; */
+}

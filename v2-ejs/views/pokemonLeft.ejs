@@ -1,0 +1,40 @@
+<div class="left-container">
+    <div class="left-top-container"> 
+        <div class="info"><h3><%= id %></h3><br>
+                        <h3><%= height %> &nbsp; &nbsp; <%= weight %></h3>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stats-radar">
+            <canvas id="stats-radar-chart" style="display: inline-block;"></canvas> 
+        </div>
+        <div class="stats-right">
+            <div class="stats-text"> 
+                <% let label = ['HP', 'ATTACK', 'DEFENSE', 'SP-ATT', 'SP-DEF', 'SPEED'] %>
+                <% stat.forEach((e, i) => { %>
+                    <span> <%= label[i] %> : <%= e %> </span><br>
+                <% }); %> 
+            </div>
+            
+            <div class="stats-doughnut">
+                <canvas id="stats-doughnut-chart" style="display: inline-block"></canvas> 
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="left-bottom-container">
+        <p><b>EVOLUTION CHAIN</b></p>
+        <% for(let i = 0; i < evolution.length; i += 2) { %>
+            <div class="evolution">
+                <div>
+                <span> <%= evolution[i].toUpperCase() %> </span>
+                </div>
+                <div>
+                    <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= evolution[i+1] %>.png></img>
+                </div>
+            </div>
+        <% } %>
+        
+    </div>
+</div> 
