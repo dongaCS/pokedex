@@ -13,7 +13,7 @@ Learning to work with HTML, CSS, JS, Node, Express, Axios and Morgan.
 - Process JSON for desired data 
 - Generates HTML & CSS, then loads it to URL
 
-[insert preview here]
+![preview.png](https://raw.githubusercontent.com/dongaCS/pokedex/main/v1-html/preview.png)
   
 ## About
 ### index.js
