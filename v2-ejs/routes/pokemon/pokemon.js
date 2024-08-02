@@ -44,7 +44,6 @@ router.get(`/search-pokemon`, async (req, res) => {
         //     }
         // }
         
-
         // pokemon gender rate, some has no gender
         let rates = [0];
         if(dex.data.gender_rate != -1) {

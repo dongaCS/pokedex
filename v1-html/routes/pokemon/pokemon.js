@@ -5,7 +5,6 @@ const express = require(`express`);
 const router = express.Router();
 const create = require(`./pokemonHelper.js`)
 
-
 // /api/pokemon/charmander
 router.get(`/:pokemon`, async (req, res) => {
     try {
