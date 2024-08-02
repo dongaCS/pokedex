@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POKEMON</title>
+    <style> body {
+    padding: 0px;
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 0px;
+    margin-top: 0px;
+}
+
+.container {
+    /* background-color: green; */
+    height: 90%;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid;
+}
+
+.top-container {
+    /* background-color: aqua; */
+    align-content: center;
+    text-align: center;
+    height: 8%;
+    overflow: scroll;
+}
+
+.name {
+    /* background-color: yellow; */
+    display: inline-block;
+    padding-top: 20px;
+    vertical-align: middle;
+    /* vertical-align: center; */
+}
+
+.audio {
+    /* background-color: pink; */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+button {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 50%;
+    background: linear-gradient(to top, transparent 8px, red 11px);
+}
+
+button::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 10px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid;
+    top: 4px;
+    left: 7px;
+}
+
+.image {
+    /* background-color: black; */
+    height: 50%;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    align-content: center;
+}
+
+.image img {
+    height: 80%;
+    width: 80%;
+}
+
+.inner-container {
+    /* background-color: blueviolet; */
+    height: 20%;
+    border-bottom: 2px solid;
+}
+
+.inner-container p {
+    padding: 0px;
+    margin: 0px;
+    vertical-align: center;
+    padding-bottom: 2px;
+}
+
+.inner-container span {
+    padding: 2px;
+    display: inline-block;
+    vertical-align: center;
+    background-color: darkgray;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+.type {
+    /* background-color: palegreen; */
+    vertical-align: top;
+    width: 45%;
+    display: inline-block;
+    height: 100%;
+    overflow: scroll;
+    border-right: 2px solid;
+    align-content: center;
+}
+
+.ability {
+    /* background-color: yellowgreen; */
+    vertical-align: top;
+    width: 45%;
+    display: inline-block;
+    height: 100%;
+    overflow: scroll;
+    align-content: center;
+}
+
+.description {
+    /* background-color: palevioletred; */
+    height: 20%;
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    text-transform: none;
+    /* padding: 0px, 5px; */
+} 
+    </style>
+    </head>
+    <body>
+    <script>
+    let sound = new Audio;
+        function play(url) {
+            sound.pause();
+            sound.src = url;
+            sound.play();
+        }
+    </script>
+    <div class="container">
+        <div class="top-container"> 
+            <div class="name"><h1>#4: charmander</h1></div>
+            <div class="audio"><button onclick="play('https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/4.ogg')"></button></div>
+        </div>
+        <div class="image"><img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png></img></div>
+        <div class="inner-container">
+            <div class="type"><p><b>TYPE</b></p> <span>fire<br></span></div>
+            <div class="ability"><p><b>ABILITIES</b></p> <span>blaze<br></span> <span>solar-power<br></span></div>
+        </div>
+        <div class="description"><p>Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.</p></div>
+    </div>
+  </body>
+</html>

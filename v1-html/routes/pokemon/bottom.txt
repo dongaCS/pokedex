@@ -1,0 +1,26 @@
+
+    </style>
+    </head>
+    <body>
+    <script>
+    let sound = new Audio;
+        function play(url) {
+            sound.pause();
+            sound.src = url;
+            sound.play();
+        }
+    </script>
+    <div class="container">
+        <div class="top-container"> 
+            <div class="name">NAME</div>
+            <div class="audio">AUDIO</div>
+        </div>
+        <div class="image">IMAGE</div>
+        <div class="inner-container">
+            <div class="type">TYPES</div>
+            <div class="ability">ABILITIES</div>
+        </div>
+        <div class="description">DESCRIPTION</div>
+    </div>
+  </body>
+</html>
