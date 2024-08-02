@@ -10,9 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 const pokemonRouter = require(`./routes/pokemon/pokemon.js`)
-app.use(`/api/pokemon`, pokemonRouter); // use USE 
+app.use(`/api/pokemon`, pokemonRouter); 
 
 app.get(`/`, (req, res) => res.send(`http://localhost:3000/api/pokemon/`))
 
 const PORT = 3000;
-app.listen(PORT, () => console.log(`fun 2e-ejs server running ${PORT}`));
+app.listen(PORT, () => console.log(`pokeDex ejs server running ${PORT}`));

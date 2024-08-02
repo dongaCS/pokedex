@@ -5,7 +5,6 @@ router = express.Router();
 
 router.get(`/`, (req, res) => {
     res.render(`pokemonHome`);
-
 });
 
 
@@ -31,8 +30,7 @@ router.get(`/search-pokemon`, async (req, res) => {
             evoData = evoData['evolves_to'][0];
         } while ( evoData && evoData.hasOwnProperty('evolves_to'));
         
-        console.log(chain)
-
+        // console.log(chain)
 
         // for eevee
         // if(pokemon === "eevee") {
@@ -46,8 +44,7 @@ router.get(`/search-pokemon`, async (req, res) => {
         //     }
         // }
         
-        
-        
+
         // pokemon gender rate, some has no gender
         let rates = [0];
         if(dex.data.gender_rate != -1) {
