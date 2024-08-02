@@ -11,11 +11,10 @@ router.get(`/`, (req, res) => {
 router.get(`/search-pokemon`, async (req, res) => {
     try{
         let { pokemon } = req.query
-        pokemon = pokemon.toLowerCase();     // the code might break on uppercase pokemon name, need to check
+        pokemon = pokemon.toLowerCase(); //pokeapi only supports lowercase names
         let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         let dex = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${info.data.id}`);
-        // dex.data.gender_rate = x /8 * 100 for female
-        // dex.color.name = color of pokemon
+        
         // dex.evolution_chain = url for chain
 
         // horrid drilling for evolutions doesn't work for eevee we can maybe keep looping at x level, also check for pokemon like ralts 3rd evo => 2 options
