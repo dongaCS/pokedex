@@ -13,7 +13,7 @@ Learning to work with EJS, Node, Express, and Axios.
 - Process JSON for desired data 
 - Uses EJS engine to render URL 
 
-[insert preview here]
+![preview](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/preview.png)
 
 ## About
 ### index.js
