@@ -1,5 +1,11 @@
 # PokeDex 1.0
-Learning to work with HTML, CSS, JS, Node, Express, Axios and Morgan. 
+![HTML5](https://img.shields.io/badge/HTML5-%23E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-%231572B6?logo=css3&logoColor=white)
+![Node_v20.14.0](https://img.shields.io/badge/Node_v20.14.0-green?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-%23404d59?logo=express&logoColor=%2361DAFB)
+![Axios](https://img.shields.io/badge/Axios-purple?logo=axios)
+![Morgan](https://img.shields.io/badge/Morgan-blue)
+
 
 ## Table of Contents
 - [Overview](#Overview)
