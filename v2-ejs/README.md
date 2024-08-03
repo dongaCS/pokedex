@@ -4,6 +4,7 @@ Learning to work with EJS, Node, Express, and Axios.
 ## Table of Contents
 - [Overview](#Overview)
 - [About](#About)
+- [Bugs](#Known-Bugs)
 - [Running it Locally](#Running-it-Locally)
 
 ## Overview
@@ -15,11 +16,37 @@ Learning to work with EJS, Node, Express, and Axios.
 
 ![preview](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/preview.png)
 
+### Lay of the Land
+```
+v2-ejs
+  - public
+    - images
+        bugcatcher.png
+    - script
+        postRender.ejs
+    - style
+        pokemonLeft.css
+        pokemonRight.css
+        pokemonMain.css
+  - routes
+      pokemon.js
+  - views
+      pokemonBug.ejs
+      pokemonHome.ejs
+      pokemonLeft.ejs
+      pokemonMerge.ejs
+      pokemonMissingNo.ejs
+      pokemonRight.ejs
+      searchbar.ejs
+index.js
+```
+
 ## About
 ### index.js
 - Contains basic setup for using Express App and supporting modules.
   - parser: Express
   - router: Express
+  - view engine: EJS
   - port: a number we defined for server to listen to 
 - When user goes to `http://localhost:3000/api/pokemon/POKEMON_NAME`, this file makes **pokemon.js** handle it
 
@@ -28,8 +55,37 @@ Learning to work with EJS, Node, Express, and Axios.
 - Does the API request call to https://pokeapi.co/api/v2/. 
 - Uses Axios to address data sent back from pokeapi. 
 - Handles all errors that may occur during this exchange
-- TO BE UPDATED
+- Extracts JSON data such as:
+  - Name and Pokemon Sound (pokemon cry)
+  - Image
+  - Type
+  - Abilities
+  - Description (pokemon flavor)
+  - ID, Height and Weight
+  - Base Stats
+  - Gender Rates
+  - Evolution Chain
+- Sends all the information to **pokemonMerge.ejs** for rendering
 
+---
+### pokemonMerge.ejs
+- pokemonMerge.ejs is made up of multiple EJS partials
+![merge.png](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/merge.png)
+
+---
+### pokemonHome.ejs, pokemonMissingNo.ejs and pokemonBug.ejs
+- **pokemonHome.ejs** is a blank landing page for when http://localhost:3000/api/pokemon/ is hit 
+- **pokemonMissingNo.ejs** loads when there is an error with [pokeapi](https://pokeapi.co/api/v2/)
+- **pokemonBug.ejs** appears when a bug occurs (dev side error)
+
+## Known Bugs
+#### Evolution Chains
+- ie) Eevee - multiply second evolution (stone, location, time )
+- ie) Ralts - multiple 3rd evolution (gender based)
+- ie) Poliwag - multiple 3rd evolution (item based)
+- ie) Tyrogue - multiple second evolution (stat based)
+- ie) Wurmple - multiple second into different 3rd (PID game based)
+- and many more...
 
 ## Running it Locally
 - Make sure Node is installed from: 
@@ -45,10 +101,3 @@ Learning to work with EJS, Node, Express, and Axios.
   - replace POKEMON_NAME with a pokemon 
   - ie) http://localhost:3000/api/pokemon/charmander
 - To stop the Server, hit `Control + C` in the terminal
-
-
-## Known Bugs
-#### Evolution Chains
-- Eevee - multiply second evolution 
-- Ralts - multiple 3rd evolution 
-
