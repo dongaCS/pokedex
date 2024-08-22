@@ -84,12 +84,11 @@ index.js
 
 ## Known Bugs
 #### Evolution Chains
-- ie) Eevee - multiply second evolution (stone, location, time )
-- ie) Ralts - multiple 3rd evolution (gender based)
-- ie) Poliwag - multiple 3rd evolution (item based)
-- ie) Tyrogue - multiple second evolution (stat based)
-- ie) Wurmple - multiple second into different 3rd (PID game based)
-- and many more...
+- ie) Eevee (FIXED) - multiply second evolution
+- ie) Tyrogue (FIXED) - multiple second evolution
+- ie) Ralts (FIXED) - multiple 3rd evolution
+- ie) Poliwag (FIXED) - multiple 3rd evolution 
+- ie) Wurmple - multiple second into different 3rd
 
 ## Running it Locally
 - Make sure Node is installed from: 
