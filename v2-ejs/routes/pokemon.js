@@ -15,33 +15,28 @@ router.get(`/search-pokemon`, async (req, res) => {
         let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         let dex = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${info.data.id}`);
         
-        // dex.evolution_chain = url for chain
-
-        // horrid drilling for evolutions doesn't work for eevee we can maybe keep looping at x level, also check for pokemon like ralts 3rd evo => 2 options
+        // setting up to get pokemon evolution
         let evo = await axios.get(dex.data.evolution_chain.url);
         let evoData = evo.data.chain
         let chain = [];
-        // want to place and > between evolution chains 
-        // maybe 3n = > and in html for 3n of length we insert > 
-        // but eevee = fml
+
         do {
-            chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
-            evoData = evoData['evolves_to'][0];
-        } while ( evoData && evoData.hasOwnProperty('evolves_to'));
+            // stores pokemon name and image number
+            if(!chain.includes(evoData.species.name)) { // because of evoData['evolves_to'].length != 1 we will get a dupe
+                chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", "")); 
+            }
+
+            // takes care of pokemon with multiple options of evolution
+            if(evoData['evolves_to'].length != 1) { 
+                for(let e of evoData['evolves_to']) {
+                    chain.push(e.species.name, e.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+                }
+            }
+
+            evoData = evoData['evolves_to'][0]; // goes to next evolution in chain
+        } while (evoData && evoData.hasOwnProperty('evolves_to'));
         
         // console.log(chain)
-
-        // for eevee
-        // if(pokemon === "eevee") {
-        //     for(e of evo.data.chain.evolves_to) {
-        //     let details = e.evolution_details[0]
-        //     let arr = [];
-        //     for(c of Object.keys(details)) { // this is evolution conditions
-        //         if(details[c]) arr.push(details[c]) /
-        //     }
-        //         console.log(e.species.name)
-        //     }
-        // }
         
         // pokemon gender rate, some has no gender
         let rates = [0];
@@ -66,6 +61,7 @@ router.get(`/search-pokemon`, async (req, res) => {
             evolution: chain,
         });
     } catch (error) {
+        // error because of API call
         if(error.name === "AxiosError") {
             res.render(`pokemonMissingNo`, {
                 name: `MissingNo`,
@@ -76,6 +72,7 @@ router.get(`/search-pokemon`, async (req, res) => {
                 errorLog: error,
             });
         } else {
+            // this error should only occur if there is a dev problem
             res.render(`pokemonBug`, {
                 name: `Bug Catcher Anna`,
                 types: [2, 11],
@@ -88,6 +85,8 @@ router.get(`/search-pokemon`, async (req, res) => {
     }
     return;
 });
+
+
 
 
 module.exports = router;
