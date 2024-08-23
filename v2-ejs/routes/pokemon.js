@@ -17,25 +17,8 @@ router.get(`/search-pokemon`, async (req, res) => {
         
         // setting up to get pokemon evolution
         let evo = await axios.get(dex.data.evolution_chain.url);
-        let evoData = evo.data.chain
         let chain = [];
-
-        do {
-            // stores pokemon name and image number
-            if(!chain.includes(evoData.species.name)) { // because of evoData['evolves_to'].length != 1 we will get a dupe
-                chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", "")); 
-            }
-
-            // takes care of pokemon with multiple options of evolution
-            if(evoData['evolves_to'].length != 1) { 
-                for(let e of evoData['evolves_to']) {
-                    chain.push(e.species.name, e.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
-                }
-            }
-
-            evoData = evoData['evolves_to'][0]; // goes to next evolution in chain
-        } while (evoData && evoData.hasOwnProperty('evolves_to'));
-        
+        evolution(evo.data.chain, chain); 
         // console.log(chain)
         
         // pokemon gender rate, some has no gender
@@ -86,7 +69,23 @@ router.get(`/search-pokemon`, async (req, res) => {
     return;
 });
 
-
+function evolution(evoData, chain) {
+    // end of evolution case or no evolution
+    if(evoData['evolves_to'].length == 0) {
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+        return chain;
+    // multiple evolution for stage, ie more than 1 option to evolve into
+    } else if(evoData['evolves_to'].length > 1) {
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", "")); // add self
+        for(let e of evoData['evolves_to']) {
+            evolution(e, chain)
+        }
+    // normal evolution 1 to 1
+    } else {
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+        evolution(evoData['evolves_to'][0], chain)
+    }
+}
 
 
 module.exports = router;
