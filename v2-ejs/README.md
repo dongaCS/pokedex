@@ -88,7 +88,7 @@ index.js
 - ie) Tyrogue (FIXED) - multiple second evolution
 - ie) Ralts (FIXED) - multiple 3rd evolution
 - ie) Poliwag (FIXED) - multiple 3rd evolution 
-- ie) Wurmple - multiple second into different 3rd
+- ie) Wurmple(FIXED) - multiple second into different 3rd
 
 ## Running it Locally
 - Make sure Node is installed from: 
