@@ -70,6 +70,7 @@ index.js
   - Base Stats
   - Gender Rates
   - Evolution Chain
+  - Color
 - Sends all the information to **pokemonMerge.ejs** for rendering
 
 ---
@@ -90,7 +91,7 @@ From text to stylish banners: To get the sprite for typing, I performed extensiv
 - Looking at the JSON we see inside of axios(URL).data
 ```JSON
 {...
-"types": [
+  "types": [
     {
       "slot": 1,
       "type": {
@@ -109,7 +110,7 @@ From text to stylish banners: To get the sprite for typing, I performed extensiv
 ...}
 ```
 - the number at the end determines what we need to use to grab the type png
-- ie) fire = 10 so the url would be https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png ![fire](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png)
+- ie) fire = 10 so the url would be https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/10.png ![fire](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/10.png)
 
 ---
 ### Pokemon Stats Array
@@ -123,9 +124,9 @@ In pokemon.js, info.data.stats was passed using `${}` therefore the data wasn't 
 
 ---
 ### Generating Charts
-#### pokemonLeft.ejs Error - bane of my life
+#### pokemonLeft.ejs Error - bane of this project
 - This is suppose to generate a chart in on the page, the problem is that it take a DOM object. I try to create a new DOM object with `let chart = new Chart("stat-radar-chart" {...} ) `. This cause a syntax error at new Chart () saying there is a missing semicolon. I rewrite the code several times between JS and EJS to make sure I translate it properly to EJS, but it still gives me the same error. I smash my head into a wall and think of another solution as I couldn't see the problem after searching for HOURS. HOURS!!
-``` EJS
+```EJS
 <% let chart = new Chart("stat-radar-chart" %>
     <% { %>
     <% type: "radar", %>
@@ -142,17 +143,17 @@ In pokemon.js, info.data.stats was passed using `${}` therefore the data wasn't 
 - Upon reviewing examples, I realized that the `<script>` tag should be used to interact with the DOM because the page renders and calls `new Chart("stat-radar-chart", {...})` during render, so the DOM element with the `#stat-radar-chart` does not yet exist. To resolve this, I needed to place the `<script>` tag after the `<canvas id="stat-radar-chart">` element to ensure it is properly generated before attempting to initialize the chart.
 ```HTML
 <script>
-    const ctx = document.querySelector('.stats-radar-chart');    
-    new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ["att", "hp", "def"],
-            datasets: [{
-                data: [10, 50, 120],
-                borderWidth: 1,
-            }]
-        },
-    });
+  const ctx = document.querySelector('.stats-radar-chart');    
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ["att", "hp", "def"],
+      datasets: [{
+        data: [10, 50, 120],
+        borderWidth: 1,
+      }]
+    },
+  });
 </script>
 ```
 - The code is running but now we have a 404 error in `pokemonMerge.ejs` the community said to import an updated script.
@@ -160,8 +161,70 @@ In pokemon.js, info.data.stats was passed using `${}` therefore the data wasn't 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 ```
 - Now I have a problem trying to get labels of the chart to match the ones from pokemon.js and the data from the stats to display. I try `labels: <%= label %>` and `data: <%= stat %>` but it comes out as `hp,att,def,sp-att,sp-def,speed` and `10,30,40,50,60,70` strings. It was tricky since I wanted to pass EJS properites into a script using that was creating an object using Chart.js. This wasn't the same issue as `${}` where I was passing it strings by mistake, Charts.js read the data directly as strings rather than array data. My work around was to hardcoded the stat names (hp, att, def,...) and for stats I changed it to `data: [<%= stat %>]`. I hardcorded the labels because I didn't like how the ones from PokeApi looked and [<%= stat %>] tricks Charts.js into reading it as an array.
-- All was well until I played with the sizing of the window, the chart was tiny. I added styling, `<canvas id="stats-doughnut-chart" style="display: inline-block"></canvas>`, this will force the chart to adjust to the container's size, the offical documentation says to do so.
-- No other major issues traumatized me after.
+```Javascript
+new Chart("stats-radar-chart", {
+  type: 'radar',
+  data: {
+    labels: ['HP', 'ATTACK', 'DEFENSE', 'SP-ATT', 'SP-DEF', 'SPEED'],
+    datasets: [{
+      label: "BASE STATS (255)",
+      data: [<%= stat %>],
+      fill: true,
+      pointRadius: 1,
+      borderWidth: 2, 
+    }]
+  },
+...
+}
+```
+- All was well until I adjusted the window size and the chart became unresponsive. I searched the web for examples and documentation and found that: **"Detecting when the canvas size changes cannot be done directly from the canvas element in Chart.js**." The official documentation mentioned that the canvas's height and width properties depend on its parent element, so I needed to create a separate div to ensure the canvas was a perfect square for the chart to be centered and positioned correctly. I added the following styling: `<canvas id="stat-radar-chart" style="display: inline-block"></canvas>`. This adjustment ensures the chart adapts to the container's size.
+```HTML
+<div class="stats-radar">
+  <canvas id="stats-radar-chart" style="display: inline-block;"></canvas> 
+</div>
+```
+- I wanted to add dynamic coloring to my chart to match the colors of Pokémon. Fortunately, one of the JSON data fields includes a color property, which I used for the radar graph. After some research, I discovered that there are only 10 color options available. I needed to create a system to map color names, like `red`, to their corresponding RGB values so that Chart.js could interpret them correctly. I created an object mapping color names to RGB values, which Chart.js uses to render the outlines and points with rgb(), while the inner fill is rendered with rgba().
+```Javascript
+const rgb = {
+    black: "rgb(0, 0, 0)",
+    yellow: "rgb(255, 230, 66)",
+    blue: "rgb(0, 0, 225)",
+    brown: "rgb(150, 75, 0)",
+    gray: "rgb(128, 128, 128)",
+    green: "rgb(0, 255, 0)",
+    pink: "rgb(255, 192, 0203)",
+    purple: "rgb(160, 32, 240)",
+    red: "rgb(255, 0, 0)",
+    white: "rgba(192, 192, 192)",
+} 
+
+const rgba = {
+    black: "rgba(0, 0, 0, 0.5)",
+    yellow: "rgba(255, 230, 66, 0.2)",
+    blue: "rgba(0, 0, 225, 0.2)",
+    brown: "rgba(150, 75, 0, 0.2)",
+    gray: "rgba(128, 128, 128, 0.2)",
+    green: "rgba(0, 255, 0, 0.2)",
+    pink: "rgba(255, 192, 203, 0.2)",
+    purple: "rgba(160, 32, 240, 0.2)",
+    red: "rgba(255, 0, 0, 0.2)",
+    white: "rgba(192, 192, 192, 0.2)",
+}
+
+new Chart("stats-radar-chart", {
+  type: 'radar',
+  data: {
+    labels: ['HP', 'ATTACK', 'DEFENSE', 'SP-ATT', 'SP-DEF', 'SPEED'],
+    datasets: [{
+      ...
+      backgroundColor: rgba.<%= color %>,
+      borderColor: rgb.<%= color %>,
+      ...
+    }]
+  },
+...
+}
+```
 
 ## Known Bugs
 #### Evolution Chains
