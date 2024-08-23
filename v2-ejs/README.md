@@ -244,8 +244,6 @@ new Chart("stats-radar-chart", {
    -  `node index.js`
    -  returns: **server listening on 3000**
 - Wtih the terminal still running, open any web browser and in address bar go to:
-  - `http://localhost:3000/api/pokemon/POKEMON_NAME`
-  - replace POKEMON_NAME with a pokemon 
-  - ie) http://localhost:3000/api/pokemon/charmander
+  - `http://localhost:3000/`
+  - Use the search bar to look up a Pokemon via name or id 
 - To stop the Server, hit `Control + C` in the terminal
-
