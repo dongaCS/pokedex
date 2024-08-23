@@ -5,44 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POKEMON</title>
     <link rel="stylesheet" href="/style/pokemonMain.css">
-    <link rel="stylesheet" href="/style/pokemonLeft.css">
-    <link rel="stylesheet" href="/style/pokemonRight.css">
     </head>
     <body>
-        
-        <%- include(`./searchbar.ejs`) %> 
+        <%- include(`./searchAndRandom.ejs`) %> 
         <div class="container">
-            <div class="left-container">
-                <div class="left-top-container"> 
-                    <div class="info">
-                    </div>
-                </div>
-               
-                <br>
-                <br>
-                <div class="left-bottom-container">
-                 
-                </div>
-            </div> 
-            <div class="right-container">
-                <div class="right-top-container"> 
-                    <div class="name" style="padding: 10px 0px 0px 0px;"><h1>WELCOME</h1></div>
-                </div>
-                <div class="image"><img> </img></div>
-                <div class="right-inner-container">
-                    <div class="type"><p><b>TYPE</b></p>
-                    </div>
-                    <div class="ability"><p><b>ABILITIES</b></p>
-                    </div>
-                </div>
-                <div class="description"><p>
-                </p></div>
-            </div> 
-            
-          </div>
-
-
-
-
+            <h1> WELCOME</h1>
+            <p>Start by searching a pokemon or pick a random one!</p>
+        </div>
     </body>
 </html>

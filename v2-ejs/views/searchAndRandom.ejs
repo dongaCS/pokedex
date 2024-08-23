@@ -1,0 +1,15 @@
+<div class="pokeSearch">
+    <form action="/search-pokemon" method="GET" >
+        <input id="random" type="text" name="pokemon" style="font-size: 100%; height: 70%;" placeholder="Enter Pokemon or ID">
+        <button>Search</button>
+        <button onclick="randomPokemon()">Random Encounter!</button>
+    </form>
+</div>
+
+<script>
+    const MAX_ID = 1025; // the current max from pokeapi
+    function randomPokemon() {
+        const input = document.getElementById("random");
+        input.value = Math.floor(Math.random() * MAX_ID + 1); //[0, 1025) => [1, 1026)
+    }
+</script>
