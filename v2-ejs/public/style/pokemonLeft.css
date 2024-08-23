@@ -96,6 +96,7 @@
 
 .evolution {
     /* background-color: maroon; */
+    position:relative;
     font-size: 1vw;
     height: 60%;
     width: 25%;
@@ -105,7 +106,10 @@
     padding-top: 1vw;
 }
 .stage {
-    font-size: 0.7vw;
+    /* background-color: green; */
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 .evolution-img {
