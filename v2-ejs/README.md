@@ -8,6 +8,7 @@
 ## Table of Contents
 - [Overview](#Overview)
 - [About](#About)
+- [The Journey](#The-Journey)
 - [Bugs](#Known-Bugs)
 - [Running it Locally](#Running-it-Locally)
 
@@ -82,6 +83,86 @@ index.js
 - **pokemonMissingNo.ejs** loads when there is an error with [pokeapi](https://pokeapi.co/api/v2/)
 - **pokemonBug.ejs** appears when a bug occurs (dev side error)
 
+## The Journey
+### Getting Type Banners
+From text to stylish banners: To get the sprite for typing, I performed extensive drilling and accessed the original source of the [sprites](https://github.com/PokeAPI/sprites). I then extracted the base URL for the banner set I needed and hardcoded it into the EJS template. Each typing banner is updated based on the information from the `types` property found in the JSON data.
+- Suppose: https://pokeapi.co/api/v2/pokemon/ho-oh
+- Looking at the JSON we see inside of axios(URL).data
+```JSON
+{...
+"types": [
+    {
+      "slot": 1,
+      "type": {
+        "name": "fire",
+        "url": "https://pokeapi.co/api/v2/type/10/"
+      }
+    },
+    {
+      "slot": 2,
+      "type": {
+        "name": "flying",
+        "url": "https://pokeapi.co/api/v2/type/3/"
+      }
+    }
+  ],
+...}
+```
+- the number at the end determines what we need to use to grab the type png
+- ie) fire = 10 so the url would be https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png ![fire](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png)
+
+---
+### Pokemon Stats Array
+#### pokemonLeft.ejs Error
+```ESJ
+<% for (e of stat) { %>
+  <span> <%= e.base_stat %> </span>
+<% } %>
+```
+In pokemon.js, info.data.stats was passed using `${}` therefore the data wasn't passed but rather a string was. Fixed but changing `stat: ${info.data.stats}` => `stat: info.data.stats`. It took a while to find this tiny mistake, worth remembering.
+
+---
+### Generating Charts
+#### pokemonLeft.ejs Error - bane of my life
+- This is suppose to generate a chart in on the page, the problem is that it take a DOM object. I try to create a new DOM object with `let chart = new Chart("stat-radar-chart" {...} ) `. This cause a syntax error at new Chart () saying there is a missing semicolon. I rewrite the code several times between JS and EJS to make sure I translate it properly to EJS, but it still gives me the same error. I smash my head into a wall and think of another solution as I couldn't see the problem after searching for HOURS. HOURS!!
+``` EJS
+<% let chart = new Chart("stat-radar-chart" %>
+    <% { %>
+    <% type: "radar", %>
+    <% data: { %>
+        <% labels: label %>
+        <% datasets: [ %>
+            <% { %>
+               <% data: stat %>
+            <% }, %>
+        <% ], %>
+    <% }, %>
+<% }) %>
+```
+- Upon reviewing examples, I realized that the `<script>` tag should be used to interact with the DOM because the page renders and calls `new Chart("stat-radar-chart", {...})` during render, so the DOM element with the `#stat-radar-chart` does not yet exist. To resolve this, I needed to place the `<script>` tag after the `<canvas id="stat-radar-chart">` element to ensure it is properly generated before attempting to initialize the chart.
+```HTML
+<script>
+    const ctx = document.querySelector('.stats-radar-chart');    
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ["att", "hp", "def"],
+            datasets: [{
+                data: [10, 50, 120],
+                borderWidth: 1,
+            }]
+        },
+    });
+</script>
+```
+- The code is running but now we have a 404 error in `pokemonMerge.ejs` the community said to import an updated script.
+```HTML
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+```
+- Now I have a problem trying to get labels of the chart to match the ones from pokemon.js and the data from the stats to display. I try `labels: <%= label %>` and `data: <%= stat %>` but it comes out as `hp,att,def,sp-att,sp-def,speed` and `10,30,40,50,60,70` strings. It was tricky since I wanted to pass EJS properites into a script using that was creating an object using Chart.js. This wasn't the same issue as `${}` where I was passing it strings by mistake, Charts.js read the data directly as strings rather than array data. My work around was to hardcoded the stat names (hp, att, def,...) and for stats I changed it to `data: [<%= stat %>]`. I hardcorded the labels because I didn't like how the ones from PokeApi looked and [<%= stat %>] tricks Charts.js into reading it as an array.
+- All was well until I played with the sizing of the window, the chart was tiny. I added styling, `<canvas id="stats-doughnut-chart" style="display: inline-block"></canvas>`, this will force the chart to adjust to the container's size, the offical documentation says to do so.
+- No other major issues traumatized me after.
+
 ## Known Bugs
 #### Evolution Chains
 - ie) Eevee (FIXED) - multiply second evolution
@@ -104,3 +185,4 @@ index.js
   - replace POKEMON_NAME with a pokemon 
   - ie) http://localhost:3000/api/pokemon/charmander
 - To stop the Server, hit `Control + C` in the terminal
+
