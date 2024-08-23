@@ -24,14 +24,16 @@
     </div>
 
     <div class="left-bottom-container">
-        <p><b>EVOLUTION CHAIN</b></p>
-        <% for(let i = 0; i < evolution.length; i += 2) { %>
+        <br>
+        <span><b>EVOLUTION CHAIN</b></span><br>
+        <% for(let i = 0; i < evolution.length; i += 3) { %>
             <div class="evolution">
                 <div>
                 <span> <%= evolution[i].toUpperCase() %> </span>
+                <span class="stage"> Stage <%= evolution[i+2] %> </span>
                 </div>
-                <div>
-                    <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= evolution[i+1] %>.png></img>
+                <div class="evolution-img">
+                    <img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= evolution[i+1] %>.png></img>        
                 </div>
             </div>
         <% } %>

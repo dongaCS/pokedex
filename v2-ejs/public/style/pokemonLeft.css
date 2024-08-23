@@ -90,26 +90,32 @@
 .left-bottom-container {
     /* background-color: palevioletred; */
     height: 31%;
-    text-align: center;
-    align-content: center;
     overflow: scroll;
     text-transform: none;
-    /* padding: 0px, 5px; */
 }
 
 .evolution {
     /* background-color: maroon; */
-    font-size: 1.1vw;
-    height: 65%;
-    width: 20%;
+    font-size: 1vw;
+    height: 60%;
+    width: 25%;
     display: inline-block;
-    /* align-content: center; */
-    vertical-align: middle;
     border: 1px solid;
-    padding: 5px;
+    margin-top: 0.8vw;
+    padding-top: 1vw;
+}
+.stage {
+    font-size: 0.7vw;
+}
+
+.evolution-img {
+    /* background-color: black; */
+    height: 80%;
+    width: 100%;
 }
 
 .evolution img {
+    /* background-color: aquamarine; */
     height: 100%;
     width: 100%;
 }

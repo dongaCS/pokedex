@@ -18,7 +18,7 @@ router.get(`/search-pokemon`, async (req, res) => {
         // setting up to get pokemon evolution
         let evo = await axios.get(dex.data.evolution_chain.url);
         let chain = [];
-        evolution(evo.data.chain, chain); 
+        evolution(evo.data.chain, chain, 0); // the 0 is for keeping track of evolution stages
         // console.log(chain)
         
         // pokemon gender rate, some has no gender
@@ -69,21 +69,22 @@ router.get(`/search-pokemon`, async (req, res) => {
     return;
 });
 
-function evolution(evoData, chain) {
+function evolution(evoData, chain, stage) {
     // end of evolution case or no evolution
     if(evoData['evolves_to'].length == 0) {
-        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""), stage);
         return chain;
     // multiple evolution for stage, ie more than 1 option to evolve into
     } else if(evoData['evolves_to'].length > 1) {
-        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", "")); // add self
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""), stage); // add self
+        stage += 1;
         for(let e of evoData['evolves_to']) {
-            evolution(e, chain)
+            evolution(e, chain, stage)
         }
-    // normal evolution 1 to 1
+    // normal evolution 1 to 1 
     } else {
-        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
-        evolution(evoData['evolves_to'][0], chain)
+        chain.push(evoData.species.name, evoData.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""), stage);
+        evolution(evoData['evolves_to'][0], chain, stage += 1)
     }
 }
 
