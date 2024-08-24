@@ -79,13 +79,14 @@ index.js
 
 ---
 ### pokemonHome.ejs, pokemonMissingNo.ejs and pokemonBug.ejs
-- **pokemonHome.ejs** is a blank landing page for when http://localhost:3000/api/pokemon/ is hit 
+- **pokemonHome.ejs** is a blank landing page for when http://localhost:3000/ is hit
 - **pokemonMissingNo.ejs** loads when there is an error with [pokeapi](https://pokeapi.co/api/v2/)
 - **pokemonBug.ejs** appears when a bug occurs (dev side error)
 
 | Home | Missing | Bug |
 | --- | --- | --- |
-| ![home.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/home.png?raw=true) | ![missing.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/missingNo.png?raw=true) | ![bug.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/bug.png?raw=true) |
+| <img src="https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/home.png?raw=true" width="300" height="275" /> | <img src="https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/missingNo.png?raw=true" width="300" height="275" /> | <img src="https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/bug.png?raw=true" width="300" height="275" /> |
+
 
 ## The Journey
 ### Getting Type Banners
