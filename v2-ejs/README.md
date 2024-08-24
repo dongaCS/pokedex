@@ -4,7 +4,6 @@
 ![Express](https://img.shields.io/badge/Express-%23404d59?logo=express&logoColor=%2361DAFB)
 ![Axios](https://img.shields.io/badge/Axios-purple?logo=axios)
 
-
 ## Table of Contents
 - [Overview](#Overview)
 - [About](#About)
@@ -19,7 +18,7 @@
 - Process JSON for desired data 
 - Uses EJS engine to render URL 
 
-![preview](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/preview.png)
+![preview](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/preview.png?raw=true)
 
 ### Lay of the Land
 ```
@@ -76,13 +75,17 @@ index.js
 ---
 ### pokemonMerge.ejs
 - pokemonMerge.ejs is made up of multiple EJS partials
-![merge.png](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/merge.png)
+![merge.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/merge.png?raw=true)
 
 ---
 ### pokemonHome.ejs, pokemonMissingNo.ejs and pokemonBug.ejs
 - **pokemonHome.ejs** is a blank landing page for when http://localhost:3000/api/pokemon/ is hit 
 - **pokemonMissingNo.ejs** loads when there is an error with [pokeapi](https://pokeapi.co/api/v2/)
 - **pokemonBug.ejs** appears when a bug occurs (dev side error)
+
+| Home | Missing | Bug |
+| --- | --- | --- |
+| ![home.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/home.png?raw=true) | ![missing.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/missingNo.png?raw=true) | ![bug.png](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/bug.png?raw=true) |
 
 ## The Journey
 ### Getting Type Banners
