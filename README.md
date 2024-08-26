@@ -18,4 +18,4 @@ Provided Pokemon Info:
 - Evolution Chain
 
 ## Preview 
-![preview](https://raw.githubusercontent.com/dongaCS/pokedex/main/v2-ejs/preview.png)
+![preview](https://github.com/dongaCS/pokedex/blob/main/v2-ejs/public/images/preview.png?raw=true)
